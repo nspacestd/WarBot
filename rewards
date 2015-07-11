@@ -1,0 +1,105 @@
+# List of filtered rewards for WarBot, lines starting with # are ignored
+#
+# To remove a reward from the filter, just insert a # at the beginning
+# of the line
+
+
+# Nightmare mods
+Accelerated Blast
+Blaze
+Constitution
+Focus Energy
+Fortitude
+Hammer Shot
+Ice Storm
+Rending Strike
+Stunning Speed
+Wildfire
+Animal Instinct
+Armored Agility
+Seeking Fury
+
+
+# Auras
+Corrosive Projection
+Dead Eye
+Enemy Radar
+Energy Siphon
+Infested Impedance
+Physique
+Pistol Scavenger
+Rejuvenation
+Rifle Scavenger
+Shield Disruption
+Shotgun Scavenger
+Sniper Scavenger
+Speed Holster
+Sprint Boost
+Steel Charge
+Armored Agility
+Seeking Fury
+Animal Instinct
+
+
+# Alternative helmets
+Aura Trinity Helmet Blueprint
+Aurora Frost Helmet Blueprint
+Avalon Excalibur Helmet Blueprint
+Backdraft Ember Helmet Blueprint
+Bastet Valkyr Helmet Blueprint
+Chlora Saryn Helmet Blueprint
+Chorus Banshee Helmet Blueprint
+Cierzo Zephyr Helmet Blueprint
+Coil Mag Helmet Blueprint
+Esprit Vauban Helmet Blueprint
+Essence Loki Helmet Blueprint
+Flux Nova Helmet Blueprint
+Gambit Vauban Helmet Blueprint
+Gauss Mag Helmet Blueprint
+Hemlock Saryn Helmet Blueprint
+Kara Valkyr Helmet Blueprint
+Locust Ash Helmet Blueprint
+Markhor Oberon Helmet Blueprint
+Menticide Nyx Helmet Blueprint
+Meridian Trinity Helmet Blueprint
+Oryx Oberon Helmet Blueprint
+Pendragon Excalibur Helmet Blueprint
+Phoenix Ember Helmet Blueprint
+Pulse Volt Helmet Blueprint
+Quantum Nova Helmet Blueprint
+Raknis Nekros Helmet Blueprint
+Reverb Banshee Helmet Blueprint
+Scorpion Ash Helmet Blueprint
+Shroud Nekros Helmet Blueprint
+Squall Frost Helmet Blueprint
+Storm Volt Helmet Blueprint
+Swindle Loki Helmet Blueprint
+Thrak Rhino Helmet Blueprint
+Vanguard Rhino Helmet Blueprint
+Vespa Nyx Helmet Blueprint
+
+
+# Rare resources
+Neural Sensors
+Orokin Cells
+Neurodes
+
+
+# Void keys
+Tower Iv Extermination
+Tower Iv Capture
+Tower Iv Interception
+Tower Iv Survival
+Tower Iv Defense
+Tower Iv Sabotage
+Tower Iv Mobile Defense
+
+
+# Misc
+# Mutalist Alad V Nav Coordinate
+Forma Blueprint
+Orokin Catalyst Blueprint
+Orokin Reactor Blueprint
+Vauban Chassis Blueprint
+Vauban Systems Blueprint
+Vauban Helmet Blueprint
