@@ -19,7 +19,7 @@ class Alert:
         self.maxLevel       = data['MissionInfo']['maxEnemyLevel']
         self.nightmare      = data['MissionInfo']['nightmare']
 
-    def get_string(self):
+    def __str__(self):
         """Returns a string with all the information about this alert
 
         """

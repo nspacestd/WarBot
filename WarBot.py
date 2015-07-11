@@ -245,7 +245,7 @@ class WarBot:
                 break
 
             if show_all or self.filter_rewards(a.get_rewards()):
-                alert_string += a.get_string() + '\n\n'
+                alert_string += str(a) + '\n\n'
 
         if not alert_string:
             if not show_all:
@@ -270,7 +270,7 @@ class WarBot:
 
         for i in invasions:
             if show_all or self.filter_rewards(i.get_rewards()):
-                invasion_string += i.get_string() + '\n\n'
+                invasion_string += str(i) + '\n\n'
 
         if not invasion_string:
             if not show_all:
@@ -357,7 +357,7 @@ class WarBot:
                     # If alert has not been notified, send a message
                     elif a.id not in notified_alerts and \
                             self.filter_rewards(a.get_rewards()):
-                                notification_text += a.get_string() + '\n\n'
+                                notification_text += str(a) + '\n\n'
                                 # Add to list of notified alerts
                                 notified_alerts.append(a.id)
 
@@ -370,7 +370,7 @@ class WarBot:
                     # If invasion has not been notified, send a message
                     if i.id not in notified_invasions and \
                             self.filter_rewards(i.get_rewards()):
-                                notification_text += i.get_string() + '\n\n'
+                                notification_text += str(i) + '\n\n'
                                 # Add to list of notified invasions
                                 notified_invasions.append(i.id)
 

@@ -23,7 +23,7 @@ class Invasion:
         self.ETA        = data['Eta']
         self.desc       = data['Description']
 
-    def get_string(self):
+    def __str__(self):
         """Returns a string with all the information about
         this invasion
 
@@ -32,7 +32,7 @@ class Invasion:
             invasionString = ('{0} ({1})\n'
                               '{2} ({7})\n'
                               '{8}\n'
-                              '{9}% - {10}')
+                              '{9:.2f}% - {10}')
 
         else:
             invasionString = ('{0} ({1}) - {2}\n'
