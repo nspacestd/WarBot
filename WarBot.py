@@ -17,7 +17,7 @@ class WarBot:
     API_URL = 'https://api.telegram.org/bot' + TOKEN + '/'
 
     INVASION_URL = 'https://deathsnacks.com/wf/data/invasion.json'
-    ALERT_URL = 'http://deathsnacks.com/wf/data/last15alerts_localized.json'
+    ALERT_URL = 'https://deathsnacks.com/wf/data/last15alerts_localized.json'
 
     NOTIFICATION_INTERVAL = 900
     TIMEOUT = 5
