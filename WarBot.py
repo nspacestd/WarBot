@@ -124,8 +124,13 @@ class WarBot:
         # Main loop
         while not self.close:
             p = {'timeout': WarBot.TIMEOUT, 'offset': offset}
+            r = None
 
-            r = requests.post(WarBot.API_URL + 'getUpdates', params=p).json()
+            try:
+                r = requests.post(WarBot.API_URL + 'getUpdates', params=p).json()
+            except ValueError:
+                print('Invalid JSON')
+                continue
 
             if r and r['ok']:
                 for update in r['result']:
