@@ -8,7 +8,7 @@ class Alert:
     """
 
     def __init__(self, data):
-        self.id = data['id']
+        self.id             = data['id']
         self.expiry         = datetime.fromtimestamp(data['Expiry']['sec'])
         self.description    = data['MissionInfo']['descText']
         self.location       = data['MissionInfo']['location']

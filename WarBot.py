@@ -10,6 +10,7 @@ import requests
 
 from invasion import Invasion
 from alert import Alert
+from deal import Deal
 
 
 class WarBot:
@@ -31,6 +32,7 @@ class WarBot:
                 '/alerts all - Show all current alerts\n'
                 '/invasions - Show current filtered invasions\n'
                 '/invasions all - Show all current invasions\n'
+                '/darvo - Show current daily deals\n'
                 '/notify [on|off] turn notifications on/off'
             )
 
@@ -190,6 +192,9 @@ class WarBot:
                 self.send(chat_id, self.get_invasion_string(True))
             else:
                 self.send(chat_id, self.get_invasion_string(False))
+        
+        elif '/darvo' in text:
+            self.send(chat_id, self.get_deals_string())
 
         elif '/notify' in text:
             if '/notify on' in text:
@@ -262,6 +267,32 @@ class WarBot:
 
         return [Invasion(d) for d in invasion_data]
 
+    def get_deals(self):
+        """ Returns a list of Deal objects containing all active
+        daily deals
+        Throws RuntimeError in case of a bad response
+
+        """
+
+        deal_data = None
+        r = requests.get(WarBot.DEAL_URL)
+
+        # Raise an exception in case of a bad response
+        if not r.status_code == requests.codes.ok:
+            raise RuntimeError('Bad response from ' + WarBot.DEAL_URL)
+
+        # Response.json() might raise ValueError
+        try:
+            deal_data = r.json()
+        except ValueError as e:
+            raise RuntimeError('Bad JSON from ' + WarBot.DEAL_URL) from e
+
+        # Raise an exception in case of an empty response
+        if not deal_data:
+            raise RuntimeError('Empty response from ' + WarBot.DEAL_URL)
+
+        return [Deal(d) for d in deal_data]
+
     def get_alert_string(self, show_all):
         """ Returns a string with all current alerts
 
@@ -315,6 +346,22 @@ class WarBot:
                 invasion_string = 'No invasions'
 
         return invasion_string
+
+    def get_deals_string(self):
+        """ Returns a string with all current daily deals
+
+        """
+
+        deal_string = ""
+        deals = self.get_deals()
+
+        for d in deals:
+            deal_string += str(d) + '\n\n'
+
+        if not deal_string:
+            deal_string = 'No deals'
+
+        return deal_string
 
     def filter_rewards(self, rewards):
         """ Returns True if at least one reward is contained in the
