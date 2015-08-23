@@ -195,18 +195,23 @@ class WarBot:
         Throws RuntimeError in case of a bad response
 
         """
-
+        
+        alert_data = None
         r = requests.get(WarBot.ALERT_URL)
 
         # Raise an exception in case of a bad response
         if not r.status_code == requests.codes.ok:
-            raise RuntimeError('Bad response')
+            raise RuntimeError('Bad response from ' + WarBot.ALERT_URL)
 
-        alert_data = r.json()
+        # Response.json() might raise ValueError
+        try:
+            alert_data = r.json()
+        except ValueError as e:
+            raise RuntimeError('Bad JSON from ' + WarBor.ALERT_URL) from e
 
         # Raise an exception in case of an empty response
         if not alert_data:
-            raise RuntimeError('Empty response')
+            raise RuntimeError('Empty response from ' + WarBot.ALERT_URL)
 
         return [Alert(d) for d in alert_data]
 
@@ -216,17 +221,22 @@ class WarBot:
         Throws RuntimeError in case of a bad response
 
         """
+        invasion_data = None
         r = requests.get(WarBot.INVASION_URL)
 
         # Raise an exception in case of a bad response
         if not r.status_code == requests.codes.ok:
-            raise RuntimeError('Bad response')
+            raise RuntimeError('Bad response from ' + WarBot.INVASION_URL)
 
-        invasion_data = r.json()
+        # Response.json() might raise ValueError
+        try:
+            invasion_data = r.json()
+        except ValueError as e:
+            raise RuntimeError('Bad JSON from ' + WarBot.INVASION_URL) from e
 
         # Raise an exception in case of an empty response
         if not invasion_data:
-            raise RuntimeError('Empty response')
+            raise RuntimeError('Empty response from ' + WarBot.INVASION_URL)
 
         return [Invasion(d) for d in invasion_data]
 
