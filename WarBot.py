@@ -313,23 +313,35 @@ class WarBot:
         """
 
         if enable:
-            # Acquire lock on notification_chats and add new chat to it
-            with self.notification_lock:
-                self.notification_chats.append(chat_id)
+            if chat_id not in self.notification_chats:
+                # Acquire lock on notification_chats and add new chat to it
+                with self.notification_lock:
+                    self.notification_chats.append(chat_id)
 
-            # Start notifier if needed
-            if not self.notifications.is_set():
-                self.notifications.set()
+                # Start notifier if needed
+                if not self.notifications.is_set():
+                    self.notifications.set()
 
+                # Send confirmation to user
+                self.send(chat_id, 'Notifications enabled')
+            else:
+                self.send(chat_id, 'Notifications are already enabled')
         else:
-            # Remove chat_id from notification_chats
             if chat_id in self.notification_chats:
+                # Remove chat_id from notification_chats
                 with self.notification_lock:
                     self.notification_chats.remove(chat_id)
+
                 # Stop notifier if there are no chats with
                 # active notifications
                 if not self.notification_chats:
                     self.notifications.clear()
+
+                # Send confirmation to user
+                self.send(chat_id, 'Notifications disabled')
+            else:
+                self.send(chat_id, 'Notifications are already disabled')
+
 
     def notifier(self):
         """ Runs in a separate thread and checks alerts and invasions every
