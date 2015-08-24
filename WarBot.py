@@ -4,6 +4,7 @@ import time
 import shelve
 import argparse
 import os.path
+import dbm
 
 import requests
 
@@ -47,11 +48,11 @@ class WarBot:
 
         # Read saved program state
         try:
-            with shelve.open(state_path) as f:
+            with shelve.open(state_path, flag='r') as f:
                 self.notification_chats = f['chats']
                 self.notified_alerts = f['alerts']
                 self.notified_invasions = f['invasions']
-        except FileNotFoundError:
+        except dbm.error:
             print('State file not found, defaulting to empty')
             self.notification_chats = []
             self.notified_alerts = []
@@ -419,7 +420,7 @@ class WarBot:
         in statefile
 
         """
-        with shelve.open(self.state_path) as f:
+        with shelve.open(self.state_path, flag='n') as f:
             f['chats'] = self.notification_chats
             f['alerts'] = self.notified_alerts
             f['invasions'] = self.notified_invasions
