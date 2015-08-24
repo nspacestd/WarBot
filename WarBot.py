@@ -49,8 +49,8 @@ class WarBot:
         try:
             with shelve.open(state_path) as f:
                 self.notification_chats = f['chats']
-                self.notified_alerts = ['alerts']
-                self.notified_invasions = ['invasions']
+                self.notified_alerts = f['alerts']
+                self.notified_invasions = f['invasions']
         except FileNotFoundError:
             print('State file not found, defaulting to empty')
             self.notification_chats = []
