@@ -1,9 +1,10 @@
 from datetime import datetime
 import threading
 import time
-import json
+import shelve
 import argparse
 import os.path
+import dbm
 
 import requests
 
@@ -33,18 +34,34 @@ class WarBot:
                 '/notify [on|off] turn notifications on/off'
             )
 
-    def __init__(self, reward_path, notification_path):
+    def __init__(self, reward_path, state_path):
 
         # Path to file containing rewards to filter
         self.reward_path = reward_path
 
-        # Read chats with active notifications
+        # IDs of chats with active notifications
+        self.notification_chats = []
+        
+        # IDs of notified alerts and invasions
+        self.notified_alerts = []
+        self.notified_invasions = []
+
+        # Read saved program state
         try:
-            with open(notification_path) as f:
-                self.notification_chats = json.load(f)
-        except FileNotFoundError:
-            print('Chats file not found, defaulting to empty')
+            with shelve.open(state_path, flag='r') as f:
+                self.notification_chats = f['chats']
+                self.notified_alerts = f['alerts']
+                self.notified_invasions = f['invasions']
+        except dbm.error:
+            print('State file not found, defaulting to empty')
             self.notification_chats = []
+            self.notified_alerts = []
+            self.notified_invasions = []
+        except KeyError:
+            print('Bad state file, defaulting to empty')
+            self.notification_chats = []
+            self.notified_alerts = []
+            self.notified_invasions = []
 
         # Event that starts or stops notifications
         self.notifications = threading.Event()
@@ -58,8 +75,8 @@ class WarBot:
         # Lock for reward_filter
         self.reward_lock = threading.Lock()
 
-        # Path to file for saving chats with active notifications
-        self.notification_path = notification_path
+        # Path to file for saving program state
+        self.state_path = state_path
 
         # When set to True application closes
         self.close = False
@@ -111,7 +128,7 @@ class WarBot:
             print('EOF received, quitting')
 
         self.close = True
-        self.save_notification_chats()
+        self.save_state()
 
     def loop(self):
         """ Main loop, polls telegram servers for updates
@@ -277,7 +294,6 @@ class WarBot:
         ----------
         show_all : bool
             Whether or not to show all invasions or only filtered ones
-
         """
 
         invasion_string = ''
@@ -359,9 +375,6 @@ class WarBot:
         filter are notified to all chats in notification_chats
 
         """
-        # IDs of notified alerts and invasions
-        notified_alerts = []
-        notified_invasions = []
 
         while not self.close:
             # Only run if notifications is set
@@ -378,28 +391,28 @@ class WarBot:
                     # Remove any expired alerts from list of
                     # notified alerts
                     if a.expiry < datetime.now():
-                        if a.id in notified_alerts:
-                            notified_alerts.remove(a.id)
+                        if a.id in self.notified_alerts:
+                            self.notified_alerts.remove(a.id)
 
                     # If alert has not been notified, send a message
-                    elif a.id not in notified_alerts and \
+                    elif a.id not in self.notified_alerts and \
                             self.filter_rewards(a.get_rewards()):
                                 notification_text += str(a) + '\n\n'
                                 # Add to list of notified alerts
-                                notified_alerts.append(a.id)
+                                self.notified_alerts.append(a.id)
 
                 # Remove any expired invasions
-                for n in notified_invasions:
+                for n in self.notified_invasions:
                     if not any(n == i.id for i in invasions):
-                        notified_invasions.remove(n)
+                        self.notified_invasions.remove(n)
 
                 for i in invasions:
                     # If invasion has not been notified, send a message
-                    if i.id not in notified_invasions and \
+                    if i.id not in self.notified_invasions and \
                             self.filter_rewards(i.get_rewards()):
                                 notification_text += str(i) + '\n\n'
                                 # Add to list of notified invasions
-                                notified_invasions.append(i.id)
+                                self.notified_invasions.append(i.id)
 
                 if notification_text:
                     # Send message to all chats
@@ -412,13 +425,15 @@ class WarBot:
                 pass
             time.sleep(WarBot.NOTIFICATION_INTERVAL)
 
-    def save_notification_chats(self):
-        """ Saves notifications_chats to the file specified
-        in notification_path
+    def save_state(self):
+        """ Saves the state of the notifier thread at the path specified
+        in statefile
 
         """
-        with open(self.notification_path, 'w') as f:
-            json.dump(self.notification_chats, f)
+        with shelve.open(self.state_path, flag='n') as f:
+            f['chats'] = self.notification_chats
+            f['alerts'] = self.notified_alerts
+            f['invasions'] = self.notified_invasions
 
 
 if __name__ == '__main__':
@@ -426,13 +441,13 @@ if __name__ == '__main__':
         description='WarBot, a Warframe alert telegram bot')
 
     parser.add_argument('--rewards', '-r', default='rewards',
-                        dest='rewardFile')
-    parser.add_argument('--chats', '-c', default='chats', dest='chatsFile')
+                        dest='rewards_file')
+    parser.add_argument('--statefile', '-s', default='state', dest='state_file')
 
     args = parser.parse_args()
 
-    if os.path.isfile(args.rewardFile):
-        w = WarBot(args.rewardFile, args.chatsFile)
+    if os.path.isfile(args.rewards_file):
+        w = WarBot(args.rewards_file, args.state_file)
         w.run()
 
     else:
