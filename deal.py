@@ -7,7 +7,7 @@ class Deal:
     """
 
     def __init__(self, data):
-        self.id              = data['id']
+        self.id              = data['_id']
         self.item            = data['StoreItem']
         self.expiry          = datetime.fromtimestamp(data['Expiry']['sec'])
         self.original_price  = data['OriginalPrice']
