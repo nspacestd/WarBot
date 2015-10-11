@@ -20,7 +20,7 @@ class Deal:
 
         """
 
-        deal_string = ('{0}\n'
+        deal_string = ('Daily Deal: {0}\n'
                        '{1}p (original {2}p)\n'
                        '{3} / {4} sold\n'
                        'Expires in {5}')
