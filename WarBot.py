@@ -20,6 +20,7 @@ class WarBot:
 
     INVASION_URL = 'https://deathsnacks.com/wf/data/invasion.json'
     ALERT_URL = 'https://deathsnacks.com/wf/data/last15alerts_localized.json'
+    DEAL_URL = 'http://deathsnacks.com/wf/data/daily_deals.json'
 
     NOTIFICATION_INTERVAL = 900
     TIMEOUT = 5
