@@ -146,7 +146,12 @@ class WarBot:
             try:
                 r = requests.post(WarBot.API_URL + 'getUpdates', params=p).json()
             except ValueError:
-                print('Invalid JSON')
+                print('Invalid JSON from Telegram API')
+                time.sleep(2)
+                continue
+            except requests.ConnectionError as e:
+                print('Error connecting to API server: ', e)
+                time.sleep(2)
                 continue
 
             if r and r['ok']:
