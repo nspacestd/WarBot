@@ -122,7 +122,7 @@ class WarBot:
 
         try:
             while s.lower() != 'q':
-            print('[Q]: Quit [R]: Reload rewards file')
+                print('[Q]: Quit [R]: Reload rewards file')
                 s = input()
                 if s.lower() == 'r':
                     self.load_rewards()
