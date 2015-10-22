@@ -117,15 +117,16 @@ class WarBot:
             self.notifications.set()
 
         print('WarBot is running')
-        print('[Q]: Quit [R]: Reload rewards file')
 
         s = ''
 
         try:
             while s.lower() != 'q':
+            print('[Q]: Quit [R]: Reload rewards file')
                 s = input()
                 if s.lower() == 'r':
                     self.load_rewards()
+                    print('Rewards file reloaded\n')
 
         except EOFError:
             print('EOF received, quitting')
