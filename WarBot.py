@@ -183,13 +183,13 @@ class WarBot:
             self.send(chat_id, WarBot.USAGE)
 
         elif '/alerts' in text:
-            if '/alerts all' in text:
+            if 'all' in text:
                 self.send(chat_id, self.get_alert_string(True))
             else:
                 self.send(chat_id, self.get_alert_string(False))
 
         elif '/invasions' in text:
-            if '/invasions all' in text:
+            if 'all' in text:
                 self.send(chat_id, self.get_invasion_string(True))
             else:
                 self.send(chat_id, self.get_invasion_string(False))
@@ -198,9 +198,9 @@ class WarBot:
             self.send(chat_id, self.get_deals_string())
 
         elif '/notify' in text:
-            if '/notify on' in text:
+            if 'on' in text:
                 self.set_notifications(chat_id, True)
-            elif '/notify off' in text:
+            elif 'off' in text:
                 self.set_notifications(chat_id, False)
 
     def send(self, recipient, message):
