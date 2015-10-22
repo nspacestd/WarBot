@@ -11,6 +11,7 @@ import requests
 from invasion import Invasion
 from alert import Alert
 from deal import Deal
+from news import News
 
 
 class WarBot:
@@ -21,6 +22,7 @@ class WarBot:
     INVASION_URL = 'https://deathsnacks.com/wf/data/invasion.json'
     ALERT_URL = 'https://deathsnacks.com/wf/data/last15alerts_localized.json'
     DEAL_URL = 'http://deathsnacks.com/wf/data/daily_deals.json'
+    NEWS_URL = 'https://deathsnacks.com/wf/data/news_raw.txt'
 
     NOTIFICATION_INTERVAL = 900
     TIMEOUT = 5
@@ -34,6 +36,7 @@ class WarBot:
                 '/invasions - Show current filtered invasions\n'
                 '/invasions all - Show all current invasions\n'
                 '/darvo - Show current daily deals\n'
+                '/news - Show the news\n'
                 '/notify [on|off] turn notifications on/off'
             )
 
@@ -198,13 +201,16 @@ class WarBot:
         elif '/darvo' in text:
             self.send(chat_id, self.get_deals_string())
 
+        elif '/news' in text:
+            self.send(chat_id, self.get_news_string(), markdown=True)
+
         elif '/notify' in text:
             if 'on' in text:
                 self.set_notifications(chat_id, True)
             elif 'off' in text:
                 self.set_notifications(chat_id, False)
 
-    def send(self, recipient, message):
+    def send(self, recipient, message, markdown=False):
         """Send a message to a specified user or group
 
         Parameters
@@ -214,9 +220,15 @@ class WarBot:
             Id of recipient
         message : str
             Message to be sent
+        markdown : boolean
+            Whether the message should be parsed as markdown or not
 
         """
         p = {'chat_id': recipient, 'text': message}
+
+        if markdown:
+            p['parse_mode'] = 'Markdown'
+
         requests.post(WarBot.API_URL + 'sendMessage', params=p)
 
     def get_alerts(self):
@@ -295,6 +307,28 @@ class WarBot:
 
         return [Deal(d) for d in deal_data]
 
+    def get_news(self):
+        """Returns a list of News objects containing all the news
+        Throws RuntimeError in case of a bad response
+
+        """
+
+        news_data = None
+        r = requests.get(WarBot.NEWS_URL)
+
+        # Raise an exception in case of a bad response
+        if not r.status_code == requests.codes.ok:
+            raise RuntimeError('Bad response from ' + WarBot.NEWS_URL)
+
+        news_data = r.text.split('\n')
+        news_data.pop()
+
+        # Raise an exception in case of an empty response
+        if not news_data:
+            raise RuntimeError('Empty response from ' + WarBot.NEWS_URL)
+
+        return [News(n) for n in news_data]
+
     def get_alert_string(self, show_all):
         """ Returns a string with all current alerts
 
@@ -364,6 +398,20 @@ class WarBot:
             deal_string = 'No deals'
 
         return deal_string
+
+    def get_news_string(self):
+        """Returns a string with the news
+
+        """
+
+        news_string = ""
+
+        news = self.get_news()
+
+        for n in news:
+            news_string += str(n) + '\n\n'
+
+        return news_string
 
     def filter_rewards(self, rewards):
         """ Returns True if at least one reward is contained in the
