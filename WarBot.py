@@ -202,7 +202,8 @@ class WarBot:
             self.send(chat_id, self.get_deals_string())
 
         elif '/news' in text:
-            self.send(chat_id, self.get_news_string(), markdown=True)
+            self.send(chat_id, self.get_news_string(), markdown=True,
+                      link_preview=False)
 
         elif '/notify' in text:
             if 'on' in text:
@@ -210,7 +211,7 @@ class WarBot:
             elif 'off' in text:
                 self.set_notifications(chat_id, False)
 
-    def send(self, recipient, message, markdown=False):
+    def send(self, recipient, message, markdown=False, link_preview=True):
         """Send a message to a specified user or group
 
         Parameters
@@ -222,12 +223,16 @@ class WarBot:
             Message to be sent
         markdown : boolean
             Whether the message should be parsed as markdown or not
+        link_preview : boolean
+            Whether or not the links in the message should be previewed
 
         """
         p = {'chat_id': recipient, 'text': message}
 
         if markdown:
             p['parse_mode'] = 'Markdown'
+        if not link_preview:
+            p['disable_web_page_preview'] = True
 
         requests.post(WarBot.API_URL + 'sendMessage', params=p)
 
