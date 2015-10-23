@@ -19,7 +19,7 @@ class News:
 
         """
 
-        return '[{} ago]: [{}]({})'.format(self.get_elapsed_time(),
+        return '\[{} ago]: [{}]({})'.format(self.get_elapsed_time(),
                                               self.text, self.link)
 
     def get_elapsed_time(self):
