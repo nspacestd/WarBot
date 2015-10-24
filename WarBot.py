@@ -550,7 +550,7 @@ class WarBot:
                     # Send message to all chats, with markdown enabled
                     with self.notification_lock:
                         for c in self.notification_chats:
-                            self.send(c, notification_text, markdown=True,
+                            self.send(c, news_text, markdown=True,
                                       link_preview=False)           
 
             # If we get a bad response, just wait and try again
