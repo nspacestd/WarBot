@@ -546,7 +546,7 @@ class WarBot:
                         for c in self.notification_chats:
                             self.send(c, notification_text)
 
-                 if news_text:
+                if news_text:
                     # Send message to all chats, with markdown enabled
                     with self.notification_lock:
                         for c in self.notification_chats:
