@@ -1,5 +1,8 @@
 from datetime import datetime
 
+import utils
+
+
 class News:
     """This class represents a news item and is initialized with
     data in text format
@@ -28,14 +31,5 @@ class News:
 
         """
 
-        seconds = int((datetime.now() - self.time).total_seconds())
-        time_string = ''
-
-        if seconds >= 86400:        # Seconds in a day
-            time_string = "{0}d"
-        elif seconds >= 3600:
-            time_string = "{1}h {2}m"
-        else:
-            time_string = "{2}m"
-
-        return time_string.format(seconds // 86400, seconds // 3600, (seconds % 3600) // 60)
+        return utils.timedelta_to_string(datetime.now() - self.time)
+        

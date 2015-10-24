@@ -1,5 +1,7 @@
 from datetime import datetime
 
+import utils
+
 class Deal:
     """This class represents a daily deal and is initialized with
     data in JSON format
@@ -33,7 +35,5 @@ class Deal:
         """Returns a string containing the deal's ETA
 
         """
-        seconds = int((self.expiry - datetime.now()).total_seconds())
-        return '{} hrs, {} mins'.format(seconds // 3600,
-                                        (seconds % 3600) // 60)
+        return utils.timedelta_to_string(self.expiry - datetime.now())
 

@@ -1,5 +1,6 @@
 from datetime import datetime
 
+import utils
 
 class Alert:
     """This class represents an alert and is initialized with
@@ -49,9 +50,7 @@ class Alert:
         """Returns a string containing the alert's ETA
 
         """
-        seconds = int((self.expiry - datetime.now()).total_seconds())
-        return '{} hrs, {} mins'.format(seconds // 3600,
-                                        (seconds % 3600) // 60)
+        return utils.timedelta_to_string(self.expiry - datetime.now())
 
     def get_rewards(self):
         """Returns a list containing the alert's rewards
