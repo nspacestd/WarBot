@@ -48,9 +48,10 @@ class WarBot:
         # IDs of chats with active notifications
         self.notification_chats = []
         
-        # IDs of notified alerts and invasions
+        # IDs of notified alerts, invasions and news
         self.notified_alerts = []
         self.notified_invasions = []
+        self.notified_news = []
 
         # Read saved program state
         try:
@@ -58,16 +59,19 @@ class WarBot:
                 self.notification_chats = f['chats']
                 self.notified_alerts = f['alerts']
                 self.notified_invasions = f['invasions']
+                self.notified_news = f['news']
         except dbm.error:
             print('State file not found, defaulting to empty')
             self.notification_chats = []
             self.notified_alerts = []
             self.notified_invasions = []
+            self.notified_news = []
         except KeyError:
             print('Bad state file, defaulting to empty')
             self.notification_chats = []
             self.notified_alerts = []
             self.notified_invasions = []
+            self.notified_news = []
 
         # Event that starts or stops notifications
         self.notifications = threading.Event()
@@ -477,9 +481,10 @@ class WarBot:
 
 
     def notifier(self):
-        """ Runs in a separate thread and checks alerts and invasions every
-        NOTIFICATION_INTERVAL seconds. Those with rewards that are in the
-        filter are notified to all chats in notification_chats
+        """ Runs in a separate thread and checks alerts, invasions and news
+        every NOTIFICATION_INTERVAL seconds. Missions with rewards that
+        are in the filter and all news are notified to all chats in
+        notification_chats
 
         """
 
@@ -491,8 +496,10 @@ class WarBot:
             try:
                 alerts = self.get_alerts()
                 invasions = self.get_invasions()
+                news = self.get_news()
 
                 notification_text = ''
+                news_text = ''
 
                 for a in alerts:
                     # Remove any expired alerts from list of
@@ -521,11 +528,30 @@ class WarBot:
                                 # Add to list of notified invasions
                                 self.notified_invasions.append(i.id)
 
+                # Remove any old news
+                for n in self.notified_news:
+                    if not any(n == i.id for i in news):
+                        self.notified_news.remove(n)
+
+                for n in news:
+                    # If news not notified, send a message
+                    if n.id not in self.notified_news:
+                        news_text += str(n) + '\n\n'
+                        # Add to list of notified news
+                        self.notified_news.append(n.id)
+
                 if notification_text:
                     # Send message to all chats
                     with self.notification_lock:
                         for c in self.notification_chats:
                             self.send(c, notification_text)
+
+                 if news_text:
+                    # Send message to all chats, with markdown enabled
+                    with self.notification_lock:
+                        for c in self.notification_chats:
+                            self.send(c, notification_text, markdown=True,
+                                      link_preview=False)           
 
             # If we get a bad response, just wait and try again
             except RuntimeError:
@@ -541,6 +567,7 @@ class WarBot:
             f['chats'] = self.notification_chats
             f['alerts'] = self.notified_alerts
             f['invasions'] = self.notified_invasions
+            f['news'] = self.notified_news
 
 
 if __name__ == '__main__':
