@@ -423,8 +423,8 @@ class WarBot:
         return news_string
 
     def filter_rewards(self, rewards):
-        """ Returns True if at least one reward is contained in the
-        filter
+        """ Returns True if no rewards are contained in the
+        filter and the reward list is not empty
 
         Parameters
         ----------
@@ -432,8 +432,10 @@ class WarBot:
             List of rewards for an alert or invasion
 
         """
+        if not rewards:
+            return False
         with self.reward_lock:
-            return any(i in self.reward_filter for i in rewards)
+            return not any(i in self.reward_filter for i in rewards)
 
     def set_notifications(self, chat_id, enable):
         """ Enables or disables reward notifications for a specified
@@ -483,7 +485,7 @@ class WarBot:
     def notifier(self):
         """ Runs in a separate thread and checks alerts, invasions and news
         every NOTIFICATION_INTERVAL seconds. Missions with rewards that
-        are in the filter and all news are notified to all chats in
+        match the filter and all news are notified to all chats in
         notification_chats
 
         """

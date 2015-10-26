@@ -1,130 +1,186 @@
-# List of filtered rewards for WarBot, lines starting with # are ignored
+# Rewards in this list are not notified by WarBot
+# One reward per line
+# Lines starting with # are ignored
 #
-# To remove a reward from the filter, just insert a # at the beginning
-# of the line
+# To disable notifications for a reward, simply remove the # at
+# the beginning of the line
 
 
-# Nightmare mods
-Accelerated Blast
-Blaze
-Constitution
-Focus Energy
-Fortitude
-Hammer Shot
-Ice Storm
-Rending Strike
-Stunning Speed
-Wildfire
-Animal Instinct
-Armored Agility
-Seeking Fury
+### Nightmare mods ###
+# Accelerated Blast
+# Blaze
+# Constitution
+# Focus Energy
+# Fortitude
+# Hammer Shot
+# Ice Storm
+# Rending Strike
+# Stunning Speed
+# Wildfire
+# Animal Instinct
+# Armored Agility
+# Seeking Fury
 
 
-# Auras
-Corrosive Projection
-Dead Eye
-Enemy Radar
-Energy Siphon
-Infested Impedance
-Physique
-Pistol Scavenger
-Rejuvenation
-Rifle Scavenger
-Shield Disruption
-Shotgun Scavenger
-Sniper Scavenger
-Speed Holster
-Sprint Boost
-Steel Charge
-Armored Agility
-Seeking Fury
-Animal Instinct
+### Auras ###
+# Corrosive Projection
+# Dead Eye
+# Enemy Radar
+# Energy Siphon
+# Infested Impedance
+# Physique
+# Pistol Scavenger
+# Rejuvenation
+# Rifle Scavenger
+# Shield Disruption
+# Shotgun Scavenger
+# Sniper Scavenger
+# Speed Holster
+# Sprint Boost
+# Steel Charge
+# Armored Agility
+# Seeking Fury
+# Animal Instinct
 
 
-# Alternative helmets
-Amaru Chroma Helmet Blueprint
-Aristeas Limbo Helmet Blueprint
-Armistice Vauban Helmet Blueprint
-Aura Trinity Helmet Blueprint
-Aurora Frost Helmet Blueprint
-Avalon Excalibur Helmet Blueprint
-Backdraft Ember Helmet Blueprint
-Bastet Valkyr Helmet Blueprint
-Chlora Saryn Helmet Blueprint
-Chorus Banshee Helmet Blueprint
-Cierzo Zephyr Helmet Blueprint
-Coil Mag Helmet Blueprint
-Drac Chroma Helmet Blueprint
-Enigma Loki Helmet Blueprint
-Esprit Vauban Helmet Blueprint
-Essence Loki Helmet Blueprint
-Flux Nova Helmet Blueprint
-Gambit Vauban Helmet Blueprint
-Gauss Mag Helmet Blueprint
-Harlequin Mirage Helmet Blueprint
-Hemlock Saryn Helmet Blueprint
-Kara Valkyr Helmet Blueprint
-Ketos Hydroid Helmet Blueprint
-Locust Ash Helmet Blueprint
-Longhorn Mesa Helmet Blueprint
-Magrite Limbo Helmet Blueprint
-Markhor Oberon Helmet Blueprint
-Menticide Nyx Helmet Blueprint
-Meridian Trinity Helmet Blueprint
-Mordred Excalibur Helmet Blueprint
-Oryx Oberon Helmet Blueprint
-Ovis Mesa Helmet Blueprint
-Pendragon Excalibur Helmet Blueprint
-Phoenix Ember Helmet Blueprint
-Pulse Volt Helmet Blueprint
-Quantum Nova Helmet Blueprint
-Raknis Nekros Helmet Blueprint
-Reverb Banshee Helmet Blueprint
-Scorpion Ash Helmet Blueprint
-Shroud Nekros Helmet Blueprint
-Slipstream Nova Helmet Blueprint
-Solstice Equinox Helmet Blueprint
-Squall Frost Helmet Blueprint
-Storm Volt Helmet Blueprint
-Swindle Loki Helmet Blueprint
-Tartarus Atlas Helmet Blueprint
-Tengu Zephyr Helmet Blueprint
-Thrak Rhino Helmet Blueprint
-Trivelin Mirage Helmet Blueprint
-Triton Hydroid Helmet Blueprint
-Vanguard Rhino Helmet Blueprint
-Vespa Nyx Helmet Blueprint
+### Alternative helmets ###
+# Amaru Chroma Helmet Blueprint
+# Aristeas Limbo Helmet Blueprint
+# Armistice Vauban Helmet Blueprint
+# Aura Trinity Helmet Blueprint
+# Aurora Frost Helmet Blueprint
+# Avalon Excalibur Helmet Blueprint
+# Backdraft Ember Helmet Blueprint
+# Bastet Valkyr Helmet Blueprint
+# Chlora Saryn Helmet Blueprint
+# Chorus Banshee Helmet Blueprint
+# Cierzo Zephyr Helmet Blueprint
+# Coil Mag Helmet Blueprint
+# Drac Chroma Helmet Blueprint
+# Enigma Loki Helmet Blueprint
+# Esprit Vauban Helmet Blueprint
+# Essence Loki Helmet Blueprint
+# Flux Nova Helmet Blueprint
+# Gambit Vauban Helmet Blueprint
+# Gauss Mag Helmet Blueprint
+# Harlequin Mirage Helmet Blueprint
+# Hemlock Saryn Helmet Blueprint
+# Kara Valkyr Helmet Blueprint
+# Ketos Hydroid Helmet Blueprint
+# Locust Ash Helmet Blueprint
+# Longhorn Mesa Helmet Blueprint
+# Magrite Limbo Helmet Blueprint
+# Markhor Oberon Helmet Blueprint
+# Menticide Nyx Helmet Blueprint
+# Meridian Trinity Helmet Blueprint
+# Mordred Excalibur Helmet Blueprint
+# Oryx Oberon Helmet Blueprint
+# Ovis Mesa Helmet Blueprint
+# Pendragon Excalibur Helmet Blueprint
+# Phoenix Ember Helmet Blueprint
+# Pulse Volt Helmet Blueprint
+# Quantum Nova Helmet Blueprint
+# Raknis Nekros Helmet Blueprint
+# Reverb Banshee Helmet Blueprint
+# Scorpion Ash Helmet Blueprint
+# Shroud Nekros Helmet Blueprint
+# Slipstream Nova Helmet Blueprint
+# Solstice Equinox Helmet Blueprint
+# Squall Frost Helmet Blueprint
+# Storm Volt Helmet Blueprint
+# Swindle Loki Helmet Blueprint
+# Tartarus Atlas Helmet Blueprint
+# Tengu Zephyr Helmet Blueprint
+# Thrak Rhino Helmet Blueprint
+# Trivelin Mirage Helmet Blueprint
+# Triton Hydroid Helmet Blueprint
+# Vanguard Rhino Helmet Blueprint
+# Vespa Nyx Helmet Blueprint
 
 
-# Rare resources
+### Weapon Skins ###
+# Manticore Axe Skin Blueprint
+# Dagger Axe Skin Blueprint
+# Brokk Hammer Skin Blueprint
+
+
+### Weapons ###
+# Ceramic Dagger Blueprint
+# Dark Dagger Blueprint
+# Dark Sword Blueprint
+# Glaive Blueprint
+# Heat Dagger Blueprint
+# Heat Sword Blueprint
+# Jaw Sword Blueprint
+# Pangolin Sword Blueprint
+# Plasma Sword Blueprint
+
+
+### Resources ###
 Neural Sensors
 Orokin Cell
 Neurodes
+Alloy Plate
+Circuits
+Control Module
+Ferrite
+Gallium
+Morphics
+Rubedo
+Salvage
+Plastids
+Polymer Bundle
+Argon Crystal
+Cryotic
+Oxium
+Tellurium
 
 
-# Clantech resources
+### Clantech resources ###
 3 Fieldron
 Fieldron
 3 Detonite Injector
 Detonite Injector
 Mutagen Mass
 
-# Void keys
-Tower Iv Extermination
-Tower Iv Capture
-Tower Iv Interception
-Tower Iv Survival
-Tower Iv Defense
-Tower Iv Sabotage
-Tower Iv Mobile Defense
+
+### Void keys ###
+# Tower IV Exterminate
+# Tower IV Capture
+# Tower IV Interception
+# Tower IV Survival
+# Tower IV Defense
+# Tower IV Sabotage
+# Tower IV Mobile Defense
+
+# Tower III Exterminate
+# Tower III Capture
+# Tower III Survival
+# Tower III Defense
+# Tower III Sabotage
+# Tower III Mobile Defense
+
+Tower II Exterminate
+Tower II Capture
+Tower II Survival
+Tower II Defense
+Tower II Sabotage
+Tower II Mobile Defense
+
+Tower I Exterminate
+Tower I Capture
+Tower I Survival
+Tower I Defense
+Tower I Sabotage
+Tower I Mobile Defense
 
 
-# Misc
-# Mutalist Alad V Nav Coordinate
-Forma Blueprint
-Orokin Catalyst Blueprint
-Orokin Reactor Blueprint
-Vauban Chassis Blueprint
-Vauban Systems Blueprint
-Vauban Helmet Blueprint
-Kubrow Egg
+### Misc ###
+Mutalist Alad V Nav Coordinate
+# Forma Blueprint
+# Orokin Catalyst Blueprint
+# Orokin Reactor Blueprint
+# Vauban Chassis Blueprint
+# Vauban Systems Blueprint
+# Vauban Helmet Blueprint
+# Kubrow Egg
