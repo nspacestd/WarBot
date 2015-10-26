@@ -47,7 +47,7 @@ class Invasion:
                                      self.completion, self.ETA)
 
     def get_rewards(self):
-        """Returns a list containing the invasion's rewards
+        """Returns a list containing the invasion's rewards excluding credits
 
         """
-        return [self.reward1, self.reward2]
+        return [i for i in [self.reward1, self.reward2] if 'cr' not in i]
