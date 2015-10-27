@@ -24,7 +24,7 @@ class WarBot:
     DEAL_URL = 'http://deathsnacks.com/wf/data/daily_deals.json'
     NEWS_URL = 'https://deathsnacks.com/wf/data/news_raw.txt'
 
-    NOTIFICATION_INTERVAL = 900
+    NOTIFICATION_INTERVAL = 60
     TIMEOUT = 5
 
     USAGE = (
