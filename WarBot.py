@@ -28,7 +28,7 @@ class WarBot:
     TIMEOUT = 5
 
     USAGE = (
-                'Warframe alert and invasion bot v0.2 by @nspacestd\n\n'
+                'Warframe alert and invasion bot v1.0 by @nspacestd\n\n'
                 'Usage:\n'
                 '/help - Show this\n'
                 '/alerts - Show current filtered alerts\n'

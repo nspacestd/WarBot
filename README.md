@@ -2,9 +2,9 @@
 Telegram bot for tracking Warframe alerts and invasions.
 
 ##Features
-* Displays current alerts and invasions directly in Telegram chats
+* Displays current alerts, invasions, news and daily deals directly in Telegram chats
 * Customizable reward filter
-* Provides notifications for alerts and invasions with selected rewards
+* Provides notifications for news and alerts/invasions with selected rewards
 
 ##How to use:
 * Install [python 3](https://www.python.org/downloads/)
