@@ -247,7 +247,12 @@ class WarBot:
         """
         
         alert_data = None
-        r = requests.get(WarBot.ALERT_URL)
+        r = None
+
+        try:
+            r = requests.get(WarBot.ALERT_URL)
+        except requests.exceptions.RequestException:
+            raise RuntimeError('Error while connecting to ' + WarBot.ALERT_URL)
 
         # Raise an exception in case of a bad response
         if not r.status_code == requests.codes.ok:
@@ -272,7 +277,12 @@ class WarBot:
 
         """
         invasion_data = None
-        r = requests.get(WarBot.INVASION_URL)
+        r = None
+
+        try:
+            r = requests.get(WarBot.INVASION_URL)
+        except requests.exceptions.RequestException:
+            raise RuntimeError('Error while connecting to ' + WarBot.INVASION_URL)
 
         # Raise an exception in case of a bad response
         if not r.status_code == requests.codes.ok:
@@ -298,7 +308,11 @@ class WarBot:
         """
 
         deal_data = None
-        r = requests.get(WarBot.DEAL_URL)
+        r = None
+        try:
+            r = requests.get(WarBot.DEAL_URL)
+        except requests.exceptions.RequestException:
+            raise RuntimeError('Error while connecting to ' + WarBot.DEAL_URL)
 
         # Raise an exception in case of a bad response
         if not r.status_code == requests.codes.ok:
@@ -323,7 +337,11 @@ class WarBot:
         """
 
         news_data = None
-        r = requests.get(WarBot.NEWS_URL)
+        r = None
+        try:
+            r = requests.get(WarBot.NEWS_URL)
+        except requests.exceptions.RequestException:
+            raise RuntimeError('Error while connecting to ' + WarBot.NEWS_URL)
 
         # Raise an exception in case of a bad response
         if not r.status_code == requests.codes.ok:
