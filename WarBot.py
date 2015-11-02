@@ -262,7 +262,7 @@ class WarBot:
         try:
             alert_data = r.json()
         except ValueError as e:
-            raise RuntimeError('Bad JSON from ' + WarBor.ALERT_URL) from e
+            raise RuntimeError('Bad JSON from ' + WarBot.ALERT_URL) from e
 
         # Raise an exception in case of an empty response
         if not alert_data:
