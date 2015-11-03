@@ -453,7 +453,7 @@ class WarBot:
         if not rewards:
             return False
         with self.reward_lock:
-            return not any(i in self.reward_filter for i in rewards)
+            return any(i not in self.reward_filter for i in rewards)
 
     def set_notifications(self, chat_id, enable):
         """ Enables or disables reward notifications for a specified
