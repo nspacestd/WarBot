@@ -1,3 +1,6 @@
+#NOTICE
+This project has been abandoned and is no longer being developed
+
 #WarBot - a Warframe alert Telegram bot
 Telegram bot for tracking Warframe alerts and invasions.
 
